@@ -21,12 +21,12 @@ with st.sidebar:
 # CSVファイルパスのマッピング (ファイル名を半角スペースに統一)
 # Streamlit Community Cloudにデプロイする際は、これらのファイルをGitHubリポジトリのルートに配置する必要があります
 csv_file_map = {
-    "幹部": "cleaned_評価表 幹部 新ver. .csv",
-    "医務": "cleaned_評価表 医務 新ver. .csv",
-    "事務": "cleaned_評価表 事務 新ver. .csv",
-    "栄養課": "cleaned_評価表 栄養課 新ver. .csv",
-    "支援": "cleaned_評価表 支援 新ver. .csv",
-    "初任者": "cleaned_評価表 新任職員 新ver. .csv",
+    "幹部": "cleaned_評価表 幹部 新ver..csv",
+    "医務": "cleaned_評価表 医務 新ver..csv",
+    "事務": "cleaned_評価表 事務 新ver..csv",
+    "栄養課": "cleaned_評価表 栄養課 新ver..csv",
+    "支援": "cleaned_評価表 支援 新ver..csv",
+    "初任者": "cleaned_評価表 新任職員 新ver..csv",
 }
 
 # 職員データを保存するディレクトリ
@@ -173,7 +173,7 @@ if st.sidebar.button("評価項目を追加", key="add_eval_item_button"):
 if st.session_state.eval_items:
     st.sidebar.markdown("--- 現在の評価項目 ---")
     eval_df_display_sidebar = pd.DataFrame(st.session_state.eval_items)
-    st.sidebar.dataframe(eval_df_display_sidebar, width='stretch', hide_index=True, height=200) # Changed use_container_width=True to width='stretch'
+    st.sidebar.dataframe(eval_df_display_sidebar, width='stretch', hide_index=True, height=200)
 
     # 評価項目をクリアするボタン
     if st.sidebar.button("すべての評価項目をクリア", key="clear_eval_items_button"):
@@ -198,7 +198,7 @@ with col1:
     st.subheader("📊 評価スコア一覧")
     if st.session_state.eval_items:
         eval_df_display = pd.DataFrame(st.session_state.eval_items)
-        st.dataframe(eval_df_display, width='stretch', hide_index=True, height=300) # Changed use_container_width=True to width='stretch'
+        st.dataframe(eval_df_display, width='stretch', hide_index=True, height=300)
         # 合計点の表示をメインコンテンツに移動
         total_score = eval_df_display['評価点 (1-5)'].sum()
         st.info(f"**合計点**: {total_score}点") # Display in main content, not sidebar
@@ -241,7 +241,7 @@ with col2:
                 """
 
                 # Geminiモデルの初期化
-                model = genai.GenerativeModel('gemini-1.5-flash') # Confirming model name based on previous output
+                model = genai.GenerativeModel('gemini-flash-latest') # Confirming model name based on previous output
 
                 try:
                     response_for_app = model.generate_content(prompt_for_app)
@@ -255,4 +255,3 @@ with col2:
     if 'ai_analysis_result' in st.session_state and st.session_state.ai_analysis_result:
         st.markdown("--- 読み込み済みのAI分析結果 ---")
         st.markdown(st.session_state.ai_analysis_result)
-    
