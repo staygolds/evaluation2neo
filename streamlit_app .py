@@ -19,13 +19,14 @@ with st.sidebar:
         genai.configure(api_key=api_key_for_app)
 
 # CSVファイルパスのマッピング (ファイル名を半角スペースに統一)
+# Streamlit Community Cloudにデプロイする際は、これらのファイルをGitHubリポジトリのルートに配置する必要があります
 csv_file_map = {
-    "幹部": "/content/cleaned_評価表 幹部 新ver. .csv",
-    "医務": "/content/cleaned_評価表 医務 新ver. .csv",
-    "事務": "/content/cleaned_評価表 事務 新ver. .csv",
-    "栄養課": "/content/cleaned_評価表 栄養課 新ver. .csv",
-    "支援": "/content/cleaned_評価表 支援 新ver. .csv",
-    "初任者": "/content/cleaned_評価表 新任職員 新ver. .csv",
+    "幹部": "cleaned_評価表 幹部 新ver. .csv",
+    "医務": "cleaned_評価表 医務 新ver. .csv",
+    "事務": "cleaned_評価表 事務 新ver. .csv",
+    "栄養課": "cleaned_評価表 栄養課 新ver. .csv",
+    "支援": "cleaned_評価表 支援 新ver. .csv",
+    "初任者": "cleaned_評価表 新任職員 新ver. .csv",
 }
 
 # 職員データを保存するディレクトリ
