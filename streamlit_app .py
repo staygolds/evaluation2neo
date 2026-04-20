@@ -1,7 +1,7 @@
 
 import streamlit as st
 import pandas as pd
-import google.generativeai as genai
+import google.genai as genai # Changed from google.generativeai
 import os
 import json # jsonモジュールをインポート
 
@@ -173,7 +173,7 @@ if st.sidebar.button("評価項目を追加", key="add_eval_item_button"):
 if st.session_state.eval_items:
     st.sidebar.markdown("--- 現在の評価項目 ---")
     eval_df_display_sidebar = pd.DataFrame(st.session_state.eval_items)
-    st.sidebar.dataframe(eval_df_display_sidebar, width='stretch', hide_index=True, height=200)
+    st.sidebar.dataframe(eval_df_display_sidebar, width='stretch', hide_index=True, height=200) # Changed use_container_width=True to width='stretch'
 
     # 評価項目をクリアするボタン
     if st.sidebar.button("すべての評価項目をクリア", key="clear_eval_items_button"):
@@ -198,7 +198,7 @@ with col1:
     st.subheader("📊 評価スコア一覧")
     if st.session_state.eval_items:
         eval_df_display = pd.DataFrame(st.session_state.eval_items)
-        st.dataframe(eval_df_display, width='stretch', hide_index=True, height=300)
+        st.dataframe(eval_df_display, width='stretch', hide_index=True, height=300) # Changed use_container_width=True to width='stretch'
         # 合計点の表示をメインコンテンツに移動
         total_score = eval_df_display['評価点 (1-5)'].sum()
         st.info(f"**合計点**: {total_score}点") # Display in main content, not sidebar
@@ -241,7 +241,7 @@ with col2:
                 """
 
                 # Geminiモデルの初期化
-                model = genai.GenerativeModel('gemini-flash-latest')
+                model = genai.GenerativeModel('gemini-1.5-flash') # Confirming model name based on previous output
 
                 try:
                     response_for_app = model.generate_content(prompt_for_app)
